@@ -1,0 +1,8 @@
+'use client';
+import {useState} from 'react';
+import {ScrollText} from 'lucide-react';
+import {RoleGate} from '@/components/shell';
+import {PageHeading} from '@/components/shared';
+import {useDemo} from '@/core/store';
+function AuditWorkspace(){const events=useDemo(s=>s.audit),[filter,setFilter]=useState('');const displayed=[...events].reverse().filter(e=>(e.action+' '+e.subject+' '+e.detail).toLowerCase().includes(filter.toLowerCase()));return <><PageHeading eyebrow="GOVERNANCE / AUDIT" title="Every handoff has a history." description="Inspect decisions, safety evaluations, consent changes and denied access."/><div className="notice warning">Demo audit events are browser-local and resettable. Production requires tamper-evident, server-side logging.</div><section className="card"><div className="section-heading"><h2>Event trail <span className="tag">{events.length} events</span></h2><input aria-label="Filter audit events" placeholder="Filter events…" value={filter} onChange={e=>setFilter(e.target.value)}/></div>{displayed.length?<div className="table-wrap"><table><thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Subject</th><th>Detail</th></tr></thead><tbody>{displayed.map(e=><tr key={e.id}><td className="nowrap">{new Date(e.at).toLocaleString()}</td><td>{e.actor}</td><td><code>{e.action}</code></td><td>{e.subject}</td><td>{e.detail}</td></tr>)}</tbody></table></div>:<div className="quiet-empty"><ScrollText size={26}/><h3>No matching events yet</h3><p>Complete a check-in or a clinician review to populate the trail.</p></div>}</section></>;}
+export default function AuditPage(){return <RoleGate role="Clinician"><AuditWorkspace/></RoleGate>;}

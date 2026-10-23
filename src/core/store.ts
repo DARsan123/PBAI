@@ -6,7 +6,7 @@ import { getModule } from './modules';
 import { evaluateSafety } from './engine';
 import type { Role, Patient, CheckIn, Alert, Decision, Audit, Answers } from './types';
 type DemoState={
- role:Role; selectedId:string; patients:Patient[];checkIns:CheckIn[];alerts:Alert[];decisions:Decision[];audit:Audit[];
+ role:Role; roleTransition:boolean; selectedId:string; patients:Patient[];checkIns:CheckIn[];alerts:Alert[];decisions:Decision[];audit:Audit[];
  hypothesis:'unreviewed'|'dismissed'|'scientific_review'; storageError:boolean;
  setRole:(role:Role)=>void;selectPatient:(id:string)=>void;reset:()=>void;
  log:(action:string,subject:string,detail:string)=>void;
@@ -19,11 +19,11 @@ type DemoState={
 const now=()=>new Date().toISOString();
 const id=()=>globalThis.crypto?.randomUUID?.()??String(Date.now())+'-'+Math.random().toString(16).slice(2);
 const event=(actor:Role|'System',action:string,subject:string,detail:string):Audit=>({id:id(),at:now(),actor,action,subject,detail});
-const initial=()=>({...seedData(),role:'Clinician' as Role,selectedId:'DM-042',alerts:[] as Alert[],decisions:[] as Decision[],audit:[] as Audit[],hypothesis:'unreviewed' as const,storageError:false});
+const initial=()=>({...seedData(),role:'Clinician' as Role,roleTransition:false,selectedId:'DM-042',alerts:[] as Alert[],decisions:[] as Decision[],audit:[] as Audit[],hypothesis:'unreviewed' as const,storageError:false});
 export const useDemo=create<DemoState>()(persist((set,get)=>({
  ...initial(),
  log:(action,subject,detail)=>set(s=>({audit:[...s.audit,event(s.role,action,subject,detail)]})),
- setRole:role=>set({role}),
+ setRole:role=>set({role,roleTransition:true}),
  selectPatient:selectedId=>{if(get().role==='Researcher'){get().log('access_denied','patient selection','Researcher cannot select patient records');return;} if(get().patients.some(p=>p.id===selectedId))set({selectedId});},
  reset:()=>set(initial()),
  consent:(kind,value)=>{
@@ -62,7 +62,7 @@ export const useDemo=create<DemoState>()(persist((set,get)=>({
   const s=get();if(s.role!=='Researcher'){s.log('access_denied','hypothesis','Researcher role required');return;}
   set({hypothesis:status,audit:[...s.audit,event(s.role,'hypothesis_reviewed','HYP-001',status+'; isolated from patient care')]});
  }
-}),{name:'precisionbridge-demo-v1',version:1,storage:createJSONStorage(()=>({
+}),{name:'precisionbridge-demo-v1',version:1,partialize:({roleTransition,...state})=>state,storage:createJSONStorage(()=>({
  getItem:(name)=>localStorage.getItem(name),
  setItem:(name,value)=>{try{localStorage.setItem(name,value);}catch{queueMicrotask(()=>{if(!useDemo.getState().storageError)useDemo.setState({storageError:true});});}},
  removeItem:(name)=>localStorage.removeItem(name)

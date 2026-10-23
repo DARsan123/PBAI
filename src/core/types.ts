@@ -7,7 +7,7 @@ export const moduleSchema = z.object({
  id:z.string(), name:z.string(), version:z.string(), status:z.literal('illustrative'), reviewDate:z.string(), population:z.string(),
  questions:z.array(questionSchema).min(1), requiredProfile:z.array(z.string()),
  rules:z.array(z.object({id:z.string(),state:z.enum(['URGENT','PROMPT_REVIEW']),all:z.array(conditionSchema).min(1),reason:z.string()})),
- options:z.array(z.object({id:z.string(),drugClass:z.string(),context:z.string(),considerations:z.string(),criticalFields:z.array(z.string()),excludeIf:z.array(conditionSchema),evidenceId:z.string()})),
+ options:z.array(z.object({id:z.string(),drugClass:z.string(),context:z.string(),considerations:z.string(),criticalFields:z.array(z.string()),excludeIf:z.array(conditionSchema),evidenceId:z.string(),pgxDrugs:z.array(z.string()).default([])})),
  evidence:z.array(z.object({id:z.string(),source:z.string(),version:z.string(),date:z.string(),url:z.string().url()})),
  pgxPairs:z.array(z.object({drug:z.string(),gene:z.string(),evidenceId:z.string()}))
 });

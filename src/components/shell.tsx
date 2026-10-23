@@ -12,6 +12,7 @@ export function Shell({children}:{children:React.ReactNode}){
  const role=useDemo(s=>s.role),setRole=useDemo(s=>s.setRole),reset=useDemo(s=>s.reset),storageError=useDemo(s=>s.storageError);
  const [ready,setReady]=useState(false),[resetOpen,setResetOpen]=useState(false),[menu,setMenu]=useState(false);
  const path=usePathname(),router=useRouter();
+ useEffect(()=>{if(ready&&useDemo.getState().roleTransition&&(path===rolePath[role]||path===rolePath[role].slice(0,-1)))useDemo.setState({roleTransition:false});},[path,role,ready]);
  useEffect(()=>{Promise.resolve(useDemo.persist.rehydrate()).finally(()=>setReady(true));},[]);
  return <><div className="synthetic-banner"><ShieldCheck size={13}/><span>SYNTHETIC DATA — NOT FOR CLINICAL USE</span><span className="banner-right">EXL MVP · Demo only</span></div><div className="app-shell">
  <aside className={'sidebar '+(menu?'is-open':'')}><Link href="/" className="brand"><span className="brand-mark"><Activity size={25}/></span><span>PrecisionBridge<span className="brand-ai">AI</span><small>CARE MEETS DISCOVERY</small></span></Link>
@@ -23,8 +24,9 @@ export function Shell({children}:{children:React.ReactNode}){
  {resetOpen&&<div className="modal-backdrop"><section role="dialog" aria-modal="true" aria-labelledby="reset-title" className="modal"><h2 id="reset-title">Reset this demo?</h2><p>This clears local check-ins, signed decisions, alerts, consent changes and the audit trail, then restores the 60 synthetic records.</p><div className="button-row"><Button variant="outline" onClick={()=>setResetOpen(false)}>Cancel</Button><Button onClick={()=>{reset();setResetOpen(false);router.push('/');}}>Reset demo</Button></div></section></div>}</>;
 }
 export function RoleGate({role,children}:{role:Role;children:React.ReactNode}){
- const actual=useDemo(s=>s.role),log=useDemo(s=>s.log);const path=usePathname();const logged=useRef('');
- useEffect(()=>{const key=actual+path;if(actual!==role&&logged.current!==key){logged.current=key;log('access_denied',path,'Required '+role+'; attempted '+actual);}},[actual,role,path,log]);
+ const actual=useDemo(s=>s.role),transition=useDemo(s=>s.roleTransition),log=useDemo(s=>s.log);const path=usePathname();const logged=useRef('');
+ useEffect(()=>{const key=actual+path;if(!transition&&actual!==role&&logged.current!==key){logged.current=key;log('access_denied',path,'Required '+role+'; attempted '+actual);}},[actual,role,path,log,transition]);
+ if(actual!==role&&transition)return <div className="loading">Opening workspace…</div>;
  if(actual!==role)return <div className="empty-state"><ShieldCheck size={36}/><h1>Access denied</h1><p>This workspace requires the {role} role. Use the role switcher to continue the demo.</p><Link href={rolePath[actual]}>Return to your workspace →</Link></div>;
  return <>{children}</>;
 }

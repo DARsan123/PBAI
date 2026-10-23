@@ -99,7 +99,10 @@
       ],
       "excludeIf": [],
       "context": "Illustrative class for a supervised evidence-review workflow.",
-      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete.",
+      "pgxDrugs": [
+        "sertraline"
+      ]
     },
     {
       "id": "dep-b",

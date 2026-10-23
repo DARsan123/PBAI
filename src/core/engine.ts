@@ -34,7 +34,7 @@ export function compareOptions(p:Patient,m:Module,e:Evaluation|undefined,alerts:
   const missing=[...new Set([...m.requiredProfile,...o.criticalFields])].filter(k=>!p.profile[k]||p.profile[k].value===null||!p.profile[k].verified);
   const evidence=m.evidence.find(s=>s.id===o.evidenceId);
   const excluded=o.excludeIf.some(c=>matches(c,values));
-  return {...o,missing,evidence,status:excluded?'excluded_by_rule' as const:missing.length||!evidence?'requires_manual_review' as const:'eligible_for_review' as const,pgx:pgxConclusion(p,m)};
+  return {...o,missing,evidence,status:excluded?'excluded_by_rule' as const:missing.length||!evidence?'requires_manual_review' as const:'eligible_for_review' as const,pgx:p.pgx&&o.pgxDrugs.includes(p.pgx.drug)?pgxConclusion(p,m):'No actionable PGx conclusion.'};
  });
  return {blocked:false,reason:cards.some(c=>c.status==='requires_manual_review')?'Manual review required. No personalized ranking.':'Illustrative options for clinician review; no ranking.',cards};
 }
