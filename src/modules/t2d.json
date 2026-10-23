@@ -1,0 +1,115 @@
+{
+  "version": "demo-1.0",
+  "status": "illustrative",
+  "reviewDate": "2026-10-23",
+  "population": "Synthetic adults, one primary condition; no clinical validation",
+  "pgxPairs": [],
+  "id": "t2d",
+  "name": "Type 2 diabetes",
+  "questions": [
+    {
+      "id": "severeLow",
+      "label": "Severe low-glucose symptoms or needing help from another person?",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    {
+      "id": "acuteIllness",
+      "label": "New significant illness or dehydration symptoms?",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    {
+      "id": "glucose",
+      "label": "Glucose reading",
+      "type": "number",
+      "required": false,
+      "default": 132,
+      "unit": "mg/dL",
+      "min": 20,
+      "max": 700
+    }
+  ],
+  "requiredProfile": [
+    "allergies",
+    "currentTherapy"
+  ],
+  "rules": [
+    {
+      "id": "T2D-URG-01",
+      "state": "URGENT",
+      "all": [
+        {
+          "field": "severeLow",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "reason": "Severe low-glucose symptom fixture requires immediate human help."
+    },
+    {
+      "id": "T2D-REV-01",
+      "state": "PROMPT_REVIEW",
+      "all": [
+        {
+          "field": "acuteIllness",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "reason": "New illness or dehydration needs clinician review."
+    }
+  ],
+  "options": [
+    {
+      "id": "t2d-a",
+      "drugClass": "Biguanide class",
+      "evidenceId": "ada-2026",
+      "criticalFields": [
+        "renalStatus"
+      ],
+      "excludeIf": [
+        {
+          "field": "classAAllergy",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "context": "Illustrative class for a supervised evidence-review workflow.",
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+    },
+    {
+      "id": "t2d-b",
+      "drugClass": "SGLT2 inhibitor class",
+      "evidenceId": "ada-2026",
+      "criticalFields": [
+        "renalStatus"
+      ],
+      "excludeIf": [],
+      "context": "Illustrative class for a supervised evidence-review workflow.",
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+    },
+    {
+      "id": "t2d-c",
+      "drugClass": "GLP-1 receptor agonist class",
+      "evidenceId": "ada-2026",
+      "criticalFields": [
+        "renalStatus"
+      ],
+      "excludeIf": [],
+      "context": "Illustrative class for a supervised evidence-review workflow.",
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ada-2026",
+      "source": "ADA Standards of Care — Pharmacologic approaches",
+      "version": "2026",
+      "date": "2026-01-01",
+      "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/"
+    }
+  ]
+}

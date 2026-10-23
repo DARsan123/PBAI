@@ -1,0 +1,98 @@
+{
+  "version": "demo-1.0",
+  "status": "illustrative",
+  "reviewDate": "2026-10-23",
+  "population": "Synthetic adults, one primary condition; no clinical validation",
+  "pgxPairs": [],
+  "id": "hypertension",
+  "name": "Hypertension",
+  "questions": [
+    {
+      "id": "dangerSymptoms",
+      "label": "Severe chest pain, breathing difficulty or new neurological symptoms?",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    {
+      "id": "worsening",
+      "label": "New or worsening symptoms needing review?",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    {
+      "id": "systolic",
+      "label": "Systolic blood pressure",
+      "type": "number",
+      "required": false,
+      "default": 128,
+      "unit": "mmHg",
+      "min": 50,
+      "max": 300
+    }
+  ],
+  "requiredProfile": [
+    "allergies",
+    "currentTherapy"
+  ],
+  "rules": [
+    {
+      "id": "HTN-URG-01",
+      "state": "URGENT",
+      "all": [
+        {
+          "field": "dangerSymptoms",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "reason": "Severe symptom fixture requires immediate human help."
+    },
+    {
+      "id": "HTN-REV-01",
+      "state": "PROMPT_REVIEW",
+      "all": [
+        {
+          "field": "worsening",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "reason": "New symptoms need clinician review."
+    }
+  ],
+  "options": [
+    {
+      "id": "htn-a",
+      "drugClass": "Calcium channel blocker class",
+      "evidenceId": "nice-ng136",
+      "criticalFields": [
+        "renalStatus"
+      ],
+      "excludeIf": [],
+      "context": "Illustrative class for a supervised evidence-review workflow.",
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+    },
+    {
+      "id": "htn-b",
+      "drugClass": "ACE inhibitor class",
+      "evidenceId": "nice-ng136",
+      "criticalFields": [
+        "renalStatus"
+      ],
+      "excludeIf": [],
+      "context": "Illustrative class for a supervised evidence-review workflow.",
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "nice-ng136",
+      "source": "NICE Hypertension in adults",
+      "version": "NG136 reference context",
+      "date": "2019-08-28",
+      "url": "https://www.nice.org.uk/guidance/ng136"
+    }
+  ]
+}

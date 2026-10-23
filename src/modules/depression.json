@@ -1,0 +1,132 @@
+{
+  "version": "demo-1.0",
+  "status": "illustrative",
+  "reviewDate": "2026-10-23",
+  "population": "Synthetic adults, one primary condition; no clinical validation",
+  "pgxPairs": [
+    {
+      "drug": "sertraline",
+      "gene": "CYP2C19",
+      "evidenceId": "cpic-2023"
+    }
+  ],
+  "id": "depression",
+  "name": "Depression",
+  "questions": [
+    {
+      "id": "item9",
+      "label": "PHQ-9 item 9: thoughts of being better off dead or hurting yourself (0–3)",
+      "type": "number",
+      "required": true,
+      "default": 0,
+      "min": 0,
+      "max": 3
+    },
+    {
+      "id": "immediateDanger",
+      "label": "Are you in immediate danger of harming yourself?",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    {
+      "id": "worsening",
+      "label": "Mood or functioning has worsened since the last check-in?",
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    {
+      "id": "wellbeing",
+      "label": "Self-reported wellbeing",
+      "type": "number",
+      "required": false,
+      "default": 6,
+      "unit": "0–10",
+      "min": 0,
+      "max": 10
+    }
+  ],
+  "requiredProfile": [
+    "allergies",
+    "currentTherapy"
+  ],
+  "rules": [
+    {
+      "id": "DEP-URG-01",
+      "state": "URGENT",
+      "all": [
+        {
+          "field": "item9",
+          "op": "gte",
+          "value": 1
+        }
+      ],
+      "reason": "Positive structured item 9 fixture requires immediate human support."
+    },
+    {
+      "id": "DEP-URG-02",
+      "state": "URGENT",
+      "all": [
+        {
+          "field": "immediateDanger",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "reason": "Immediate self-harm concern."
+    },
+    {
+      "id": "DEP-REV-01",
+      "state": "PROMPT_REVIEW",
+      "all": [
+        {
+          "field": "worsening",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "reason": "Worsening symptoms require clinician review."
+    }
+  ],
+  "options": [
+    {
+      "id": "dep-a",
+      "drugClass": "SSRI class",
+      "evidenceId": "nice-ng222",
+      "criticalFields": [
+        "interactionReview"
+      ],
+      "excludeIf": [],
+      "context": "Illustrative class for a supervised evidence-review workflow.",
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+    },
+    {
+      "id": "dep-b",
+      "drugClass": "SNRI class",
+      "evidenceId": "nice-ng222",
+      "criticalFields": [
+        "interactionReview"
+      ],
+      "excludeIf": [],
+      "context": "Illustrative class for a supervised evidence-review workflow.",
+      "considerations": "Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "nice-ng222",
+      "source": "NICE Depression in adults",
+      "version": "NG222 (2022, amended 2024)",
+      "date": "2024-05-07",
+      "url": "https://www.nice.org.uk/guidance/ng222/chapter/Recommendations"
+    },
+    {
+      "id": "cpic-2023",
+      "source": "CPIC serotonin reuptake inhibitors",
+      "version": "2023",
+      "date": "2023-04-09",
+      "url": "https://files.cpicpgx.org/data/guideline/publication/serotonin_reuptake_inhibitor_antidepressants/2023/37032427.pdf"
+    }
+  ]
+}

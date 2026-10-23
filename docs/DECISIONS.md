@@ -1,0 +1,11 @@
+# Implementation decisions
+- The procedure limits the broader PRD to scenes 1–5. No seven-hour unattended goal was inferred.
+- Next.js App Router, TypeScript, Tailwind, shadcn local Button primitive, Recharts and persisted Zustand state; static export for Vercel.
+- Acute safety completeness and critical profile completeness are separate. Missing safety answers fail closed; missing renal verification restricts option review.
+- All clinical rules and option cards are illustrative and pending clinical review. Evidence references are contextual starting points, not clinical approval.
+- Fixed seed 42017; 60 synthetic adults, 20 per condition and 3–5 historical check-ins.
+- All counts below ten are suppressed, including numerators and missing outcomes. Percentages and complements that reveal small cells are withheld. Only fixed baseline groups are available.
+- Urgent alerts block comparison until explicit clinician resolution. Acknowledgment alone does not resolve an alert.
+- Signed decisions are append-only snapshots. Research dispositions cannot alter option cards.
+- Client role checks demonstrate workflow only; production authorization must be server-side.
+- Requested hosting is Vercel; do not silently substitute a different service. A live deployment requires an authenticated account.
