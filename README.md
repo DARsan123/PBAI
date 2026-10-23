@@ -1,4 +1,6 @@
-# PrecisionBridge AI\n\nLive demo: https://precisionbridge-ashy.vercel.app
+# PrecisionBridge AI
+
+Live demo: https://precisionbridge-ashy.vercel.app
 
 Synthetic, clinician-supervised personalized medicine MVP. Implements storyboard scenes 1–5 from the supplied PRD and build procedure.
 

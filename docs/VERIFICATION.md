@@ -25,4 +25,5 @@ Verified using the in-app browser at narrow and desktop viewports:
 
 ## Limits
 No clinical validity, production security, real notification delivery, full accessibility certification, performance SLO or broad device/browser coverage is claimed. Narrow and desktop browser views were inspected. Other devices and browsers have not been tested.
-\nLive Vercel deployment verified READY on 24 October 2026. Public routes returned HTTP 200. Browser smoke checks passed for clinician review, patient urgent escalation and research aggregates.
+
+Live Vercel deployment verified READY on 24 October 2026. Public routes returned HTTP 200. Browser smoke checks passed for clinician review, patient urgent escalation and research aggregates.
