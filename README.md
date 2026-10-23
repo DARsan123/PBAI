@@ -33,7 +33,7 @@ npx vercel login
 npx vercel --prod
 ```
 
-The checked-in Vercel config selects Next.js and the static output directory. No environment variables, database or external AI key are needed. Source documents and tests are excluded from deployment uploads using .vercelignore. A temporary unauthenticated deployment, if supplied separately, should be claimed in Vercel before its expiry.
+The checked-in Vercel config selects the Next.js adapter and its .next build metadata. The adapter handles the static export; local static preview uses out/. No environment variables, database or external AI key are needed. Source documents and tests are excluded from deployment uploads using .vercelignore. A temporary unauthenticated deployment, if supplied separately, should be claimed in Vercel before its expiry.
 
 ## Five-scene walkthrough
 1. Open Patient workspace. DM-042 shows type 2 diabetes, a kidney-condition flag, a preference to avoid hypoglycemia and unverified renal labs. Review separate clinical and research consent.
