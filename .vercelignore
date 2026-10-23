@@ -1,0 +1,8 @@
+docs/
+AGENTS.md
+src/**/*.test.ts
+*.tsbuildinfo
+.git/
+.next/
+node_modules/
+out/
