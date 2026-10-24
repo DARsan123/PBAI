@@ -15,5 +15,5 @@ export function confirmedAnswers(current:Answers,suggested:Answers,confirmed:boo
 export const filterSchema=z.object({condition:z.enum(['t2d','depression','hypertension']),baseline:z.enum(['all','lower_burden','higher_burden']),endpoint:z.literal('response'),horizon:z.literal(8)}).strict();
 export const claimSchema=z.object({claims:z.array(z.object({text:z.string().max(500),citations:z.array(z.string()).min(1)})).max(8)}).strict();
 export function grounded(claims:z.infer<typeof claimSchema>['claims'],ids:string[]){return claims.filter(c=>c.citations.length>0&&c.citations.every(id=>ids.includes(id))&&!/\b\d+\s*(mg|mcg|tablets?)\b|\b(start|stop|switch|increase|decrease)\b/i.test(c.text));}
-export function numericBullets(bullets:string[],input:unknown){const tokens=new Set(JSON.stringify(input).match(/\d+(?:\.\d+)?/g)||[]);return bullets.filter(b=>(b.match(/\d+(?:\.\d+)?/g)||[]).every(n=>tokens.has(n)));}
+export function numericBullets(bullets:string[],input:unknown){const tokens=new Set(JSON.stringify(input).match(/\d+(?:\.\d+)?/g)||[]);return bullets.filter(b=>(b.match(/\d+(?:\.\d+)?/g)||[]).every(n=>tokens.has(n))&&(b.match(/\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}\/\d{4}/g)||[]).every(date=>JSON.stringify(input).includes(date)));}
 

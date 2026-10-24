@@ -26,3 +26,5 @@ it('filters corpus audience and module',async()=>{const r=await retrieve({query:
 it('database failure falls back to BM25',async()=>{process.env.DATABASE_URL='mock';const r=await retrieve({query:'review evidence',moduleId:'t2d',audience:'clinician'});expect(r.retriever).toBe('BM25');expect(r.chunks.length).toBeGreaterThan(0);});
 it('no retrieval overlap returns no evidence',async()=>expect((await retrieve({query:'zzzzzz',moduleId:'t2d',audience:'patient'})).chunks).toEqual([]));
 });
+
+it('rejects a recombined date even when individual numbers exist',()=>expect(numericBullets(['Date 2026-24-10.'],{at:'2026-10-24'})).toEqual([]));
