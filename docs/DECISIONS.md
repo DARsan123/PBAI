@@ -13,3 +13,5 @@
 
 ## Incremental v2 — 2026-10-24
 Base master and original production deployment remain unchanged. v2 uses a separate branch, worktree, Vercel project, Neon free corpus database and localStorage key. Optional AI follows the existing deterministic workflow. See V2-CHANGES.md.
+
+Gemini 3.8 Flash returned HTTP 503 in live generation while embeddings and pgvector succeeded. Deployment model changed to the documented stable Gemini 3.6 Flash through GEMINI_MODEL; default remains 3.8 for future configuration.
