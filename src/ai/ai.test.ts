@@ -1,0 +1,28 @@
+import {describe,it,expect,vi,beforeEach} from 'vitest';
+import {getModule} from '../core/modules';
+import {cleanAnswers,confirmedAnswers,emergency,grounded,numericBullets,filterSchema,language} from './guards';
+import {cohort} from '../core/research';
+import {seedData} from '../core/seed';
+vi.mock('./llm',()=>({model:()=> 'mock-flash',generate:vi.fn(),embed:vi.fn()}));
+vi.mock('@neondatabase/serverless',()=>({neon:()=>{throw new Error('database down');}}));
+import {generate} from './llm';
+import {handle} from './service';
+import {retrieve} from './retrieve';
+beforeEach(()=>{vi.resetAllMocks();delete process.env.DATABASE_URL;});
+describe('AI safety boundaries',()=>{
+it('never accepts red-flag answers',()=>expect(cleanAnswers(getModule('depression'),{item9:0,immediateDanger:false,wellbeing:4})).toEqual({wellbeing:4}));
+it('does not apply unconfirmed suggestions',()=>expect(confirmedAnswers({glucose:100},{glucose:150},false)).toEqual({glucose:100}));
+it('detects urgent terms synchronously',()=>expect(emergency('I want to kill myself')).toBe(true));
+it('urgent text never reaches model',async()=>{const r=await handle('checkin-extract',{role:'Patient',moduleId:'depression',text:'hurt myself'});expect(r.body).toHaveProperty('urgent',true);expect(generate).not.toHaveBeenCalled();});
+it.each(['Should I stop my medication?','What dose should I take?','Do I have a diagnosis?'])('blocks patient treatment question %s',async text=>{const r=await handle('patient-education',{role:'Patient',moduleId:'t2d',text});expect(r.body).toHaveProperty('message',expect.stringContaining('Medication decisions'));expect(generate).not.toHaveBeenCalled();});
+it.each(['checkin-extract','patient-education','explain-option','change-summary','research-query'])('rejects wrong role %s',async feature=>expect((await handle(feature,{role:'Anonymous'})).status).toBe(403));
+it('provider error preserves plain flow',async()=>{vi.mocked(generate).mockRejectedValue(new Error('offline'));expect((await handle('checkin-extract',{role:'Patient',moduleId:'t2d',text:'glucose 120'})).body).toHaveProperty('message','AI assistance unavailable.');});
+it('removes bad citations',()=>expect(grounded([{text:'Valid.',citations:['a']},{text:'Bad.',citations:['outside']},{text:'Empty.',citations:[]}],['a'])).toHaveLength(1));
+it('drops fabricated numbers and dates',()=>expect(numericBullets(['Glucose 120.','Glucose 999.','Date 2030-01-01.'],{glucose:120})).toEqual(['Glucose 120.']));
+it('rejects unknown filter fields',()=>expect(filterSchema.safeParse({condition:'t2d',baseline:'all',endpoint:'response',horizon:8,patientId:'DM-042'}).success).toBe(false));
+it('research remains suppressed and consent gated',()=>{const data=seedData();expect(cohort(data.patients.map(p=>({...p,researchConsent:false})),'t2d').every(r=>r.cohort==='<10'&&r.percent===null)).toBe(true);});
+it('does not forward names or emails',()=>expect(language('My name is Jane Smith jane@example.com glucose 120')).not.toMatch(/jane|smith|example/));
+it('filters corpus audience and module',async()=>{const r=await retrieve({query:'check-ins follow-up',moduleId:'t2d',audience:'patient'});expect(r.chunks.length).toBeGreaterThan(0);expect(r.chunks.every(c=>c.module_id==='t2d'&&c.audience==='patient')).toBe(true);});
+it('database failure falls back to BM25',async()=>{process.env.DATABASE_URL='mock';const r=await retrieve({query:'review evidence',moduleId:'t2d',audience:'clinician'});expect(r.retriever).toBe('BM25');expect(r.chunks.length).toBeGreaterThan(0);});
+it('no retrieval overlap returns no evidence',async()=>expect((await retrieve({query:'zzzzzz',moduleId:'t2d',audience:'patient'})).chunks).toEqual([]));
+});

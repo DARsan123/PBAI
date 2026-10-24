@@ -1,0 +1,86 @@
+[
+  {
+    "module_id": "depression",
+    "source_id": "nice-ng222",
+    "source_version": "NG222 (2022, amended 2024)",
+    "source_date": "2024-05-07",
+    "jurisdiction": "UK",
+    "url": "https://www.nice.org.uk/guidance/ng222/chapter/Recommendations",
+    "id": "dep-a-context",
+    "audience": "clinician",
+    "title": "SSRI class review context",
+    "text": "Illustrative workflow paraphrase; pending clinical review. SSRI class is an unranked option for human evidence review. Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete. Missing critical information requires manual review. This is reference context, not a guideline recommendation."
+  },
+  {
+    "module_id": "depression",
+    "source_id": "nice-ng222",
+    "source_version": "NG222 (2022, amended 2024)",
+    "source_date": "2024-05-07",
+    "jurisdiction": "UK",
+    "url": "https://www.nice.org.uk/guidance/ng222/chapter/Recommendations",
+    "id": "dep-b-context",
+    "audience": "clinician",
+    "title": "SNRI class review context",
+    "text": "Illustrative workflow paraphrase; pending clinical review. SNRI class is an unranked option for human evidence review. Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete. Missing critical information requires manual review. This is reference context, not a guideline recommendation."
+  },
+  {
+    "module_id": "hypertension",
+    "source_id": "nice-ng136",
+    "source_version": "NG136 reference context",
+    "source_date": "2019-08-28",
+    "jurisdiction": "UK",
+    "url": "https://www.nice.org.uk/guidance/ng136",
+    "id": "htn-a-context",
+    "audience": "clinician",
+    "title": "Calcium channel blocker class review context",
+    "text": "Illustrative workflow paraphrase; pending clinical review. Calcium channel blocker class is an unranked option for human evidence review. Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete. Missing critical information requires manual review. This is reference context, not a guideline recommendation."
+  },
+  {
+    "module_id": "hypertension",
+    "source_id": "nice-ng136",
+    "source_version": "NG136 reference context",
+    "source_date": "2019-08-28",
+    "jurisdiction": "UK",
+    "url": "https://www.nice.org.uk/guidance/ng136",
+    "id": "htn-b-context",
+    "audience": "clinician",
+    "title": "ACE inhibitor class review context",
+    "text": "Illustrative workflow paraphrase; pending clinical review. ACE inhibitor class is an unranked option for human evidence review. Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete. Missing critical information requires manual review. This is reference context, not a guideline recommendation."
+  },
+  {
+    "module_id": "t2d",
+    "source_id": "ada-2026",
+    "source_version": "2026",
+    "source_date": "2026-01-01",
+    "jurisdiction": "US",
+    "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/",
+    "id": "t2d-a-context",
+    "audience": "clinician",
+    "title": "Biguanide class review context",
+    "text": "Illustrative workflow paraphrase; pending clinical review. Biguanide class is an unranked option for human evidence review. Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete. Missing critical information requires manual review. This is reference context, not a guideline recommendation."
+  },
+  {
+    "module_id": "t2d",
+    "source_id": "ada-2026",
+    "source_version": "2026",
+    "source_date": "2026-01-01",
+    "jurisdiction": "US",
+    "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/",
+    "id": "t2d-b-context",
+    "audience": "clinician",
+    "title": "SGLT2 inhibitor class review context",
+    "text": "Illustrative workflow paraphrase; pending clinical review. SGLT2 inhibitor class is an unranked option for human evidence review. Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete. Missing critical information requires manual review. This is reference context, not a guideline recommendation."
+  },
+  {
+    "module_id": "t2d",
+    "source_id": "ada-2026",
+    "source_version": "2026",
+    "source_date": "2026-01-01",
+    "jurisdiction": "US",
+    "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/",
+    "id": "t2d-c-context",
+    "audience": "clinician",
+    "title": "GLP-1 receptor agonist class review context",
+    "text": "Illustrative workflow paraphrase; pending clinical review. GLP-1 receptor agonist class is an unranked option for human evidence review. Review allergies, concomitant therapy, comorbidities, tolerability, preferences and evidence applicability. Interaction coverage is incomplete. Missing critical information requires manual review. This is reference context, not a guideline recommendation."
+  }
+]

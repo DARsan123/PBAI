@@ -1,34 +1,38 @@
 {
   "name": "precisionbridge-ai",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
     "build": "node scripts/build.mjs",
-    "start": "node scripts/serve.mjs",
+    "start": "next start --hostname 127.0.0.1",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "corpus:ingest": "tsx scripts/ingest.ts"
   },
   "dependencies": {
+    "@google/genai": "^2.31.0",
+    "@neondatabase/serverless": "^1.2.0",
+    "@radix-ui/react-slot": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
     "next": "^16.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "zustand": "^5.0.0",
-    "zod": "^4.0.0",
     "recharts": "^3.0.0",
-    "lucide-react": "^0.468.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "tailwind-merge": "^3.0.0",
-    "@radix-ui/react-slot": "^1.2.0"
+    "tsx": "^4.23.15",
+    "zod": "^4.0.0",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.7.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "vitest": "^3.2.0",
     "tailwindcss": "^4.0.0",
-    "@tailwindcss/postcss": "^4.0.0"
+    "typescript": "^5.7.0",
+    "vitest": "^3.2.0"
   }
 }

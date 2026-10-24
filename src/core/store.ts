@@ -62,7 +62,7 @@ export const useDemo=create<DemoState>()(persist((set,get)=>({
   const s=get();if(s.role!=='Researcher'){s.log('access_denied','hypothesis','Researcher role required');return;}
   set({hypothesis:status,audit:[...s.audit,event(s.role,'hypothesis_reviewed','HYP-001',status+'; isolated from patient care')]});
  }
-}),{name:'precisionbridge-demo-v1',version:1,partialize:({roleTransition,...state})=>state,storage:createJSONStorage(()=>({
+}),{name:'precisionbridge-demo-v2',version:1,partialize:({roleTransition,...state})=>state,storage:createJSONStorage(()=>({
  getItem:(name)=>localStorage.getItem(name),
  setItem:(name,value)=>{try{localStorage.setItem(name,value);}catch{queueMicrotask(()=>{if(!useDemo.getState().storageError)useDemo.setState({storageError:true});});}},
  removeItem:(name)=>localStorage.removeItem(name)

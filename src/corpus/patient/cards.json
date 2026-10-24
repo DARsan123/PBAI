@@ -1,0 +1,38 @@
+[
+  {
+    "module_id": "depression",
+    "source_id": "demo-education",
+    "source_version": "v2 illustrative; clinical review pending",
+    "source_date": "2026-10-24",
+    "jurisdiction": "Demo only",
+    "url": "https://www.nice.org.uk/guidance/ng222/chapter/Recommendations",
+    "id": "depression-education",
+    "audience": "patient",
+    "title": "Depression check-ins and follow-up",
+    "text": "Depression is the condition recorded for this synthetic profile. Check-ins record how you feel and relevant measurements over time. Answer safety questions directly. A follow-up visit lets you review symptoms, concerns and missing information with your care team. Only a clinician-signed follow-up is your recorded plan. Seek immediate human help for immediate danger; do not wait for this app. No medication choices or dosing are included."
+  },
+  {
+    "module_id": "hypertension",
+    "source_id": "demo-education",
+    "source_version": "v2 illustrative; clinical review pending",
+    "source_date": "2026-10-24",
+    "jurisdiction": "Demo only",
+    "url": "https://www.nice.org.uk/guidance/ng136",
+    "id": "hypertension-education",
+    "audience": "patient",
+    "title": "Hypertension check-ins and follow-up",
+    "text": "Hypertension is the condition recorded for this synthetic profile. Check-ins record how you feel and relevant measurements over time. Answer safety questions directly. A follow-up visit lets you review symptoms, concerns and missing information with your care team. Only a clinician-signed follow-up is your recorded plan. Seek immediate human help for immediate danger; do not wait for this app. No medication choices or dosing are included."
+  },
+  {
+    "module_id": "t2d",
+    "source_id": "demo-education",
+    "source_version": "v2 illustrative; clinical review pending",
+    "source_date": "2026-10-24",
+    "jurisdiction": "Demo only",
+    "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/",
+    "id": "t2d-education",
+    "audience": "patient",
+    "title": "Type 2 diabetes check-ins and follow-up",
+    "text": "Type 2 diabetes is the condition recorded for this synthetic profile. Check-ins record how you feel and relevant measurements over time. Answer safety questions directly. A follow-up visit lets you review symptoms, concerns and missing information with your care team. Only a clinician-signed follow-up is your recorded plan. Seek immediate human help for immediate danger; do not wait for this app. No medication choices or dosing are included."
+  }
+]
