@@ -34,5 +34,41 @@
     "audience": "patient",
     "title": "Type 2 diabetes check-ins and follow-up",
     "text": "Type 2 diabetes is the condition recorded for this synthetic profile. Check-ins record how you feel and relevant measurements over time. Answer safety questions directly. A follow-up visit lets you review symptoms, concerns and missing information with your care team. Only a clinician-signed follow-up is your recorded plan. Seek immediate human help for immediate danger; do not wait for this app. No medication choices or dosing are included."
+  },
+  {
+    "id": "t2d-definition",
+    "module_id": "t2d",
+    "title": "What type 2 diabetes means",
+    "url": "https://www.nhs.uk/conditions/type-2-diabetes/what-is-type-2-diabetes/",
+    "text": "Type 2 diabetes involves insufficient insulin or reduced effectiveness of insulin, which can leave blood glucose higher than it should be. This general education does not diagnose an individual or recommend treatment.",
+    "audience": "patient",
+    "source_id": "nhs-patient-overview",
+    "source_version": "Illustrative paraphrase; accessed 2026-10-24",
+    "source_date": "2026-10-24",
+    "jurisdiction": "UK; general education only"
+  },
+  {
+    "id": "depression-definition",
+    "module_id": "depression",
+    "title": "What depression means",
+    "url": "https://www.nhs.uk/mental-health/conditions/depression-in-adults/overview/",
+    "text": "Depression is a health condition involving persistent low mood and sometimes loss of interest, sleep changes or low energy. This general education does not diagnose an individual or recommend treatment.",
+    "audience": "patient",
+    "source_id": "nhs-patient-overview",
+    "source_version": "Illustrative paraphrase; accessed 2026-10-24",
+    "source_date": "2026-10-24",
+    "jurisdiction": "UK; general education only"
+  },
+  {
+    "id": "hypertension-definition",
+    "module_id": "hypertension",
+    "title": "What hypertension means",
+    "url": "https://www.nhs.uk/conditions/high-blood-pressure/",
+    "text": "Hypertension is another name for high blood pressure. Measurements and clinician review are part of understanding it. This general education does not diagnose an individual or recommend treatment.",
+    "audience": "patient",
+    "source_id": "nhs-patient-overview",
+    "source_version": "Illustrative paraphrase; accessed 2026-10-24",
+    "source_date": "2026-10-24",
+    "jurisdiction": "UK; general education only"
   }
 ]
