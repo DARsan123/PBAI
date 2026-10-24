@@ -10,3 +10,6 @@
 - Client role checks demonstrate workflow only; production authorization must be server-side.
 - Requested hosting is Vercel; do not silently substitute a different service. A live deployment requires an authenticated account.
 - Windows static export intermittently returned EPERM while creating directories. The build launcher retries only that transient mkdir error for a bounded interval; Linux/Vercel use the normal Next build path. One worker reduces filesystem contention.
+
+## Incremental v2 — 2026-10-24
+Base master and original production deployment remain unchanged. v2 uses a separate branch, worktree, Vercel project, Neon free corpus database and localStorage key. Optional AI follows the existing deterministic workflow. See V2-CHANGES.md.
